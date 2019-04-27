@@ -9,7 +9,14 @@ then
 	rm $SSR_PATH/user-config.json.old
 fi
 mv $SSR_PATH/user-config.json $SSR_PATH/user-config.json.old
-cp $WORK_PATH/json/*.json $SSR_PATH/user-config.json
+
+if [ "$1" = '' ]
+then
+    cp $WORK_PATH/json/$(ls $WORK_PATH/json/) $SSR_PATH/user-config.json
+else
+	cp $WORK_PATH/json/$1.json $SSR_PATH/user-config.json
+	exit 0
+fi
 
 # Remove temporary files.
 rm -rf $WORK_PATH

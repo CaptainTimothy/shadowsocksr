@@ -1,8 +1,17 @@
 # SSR Subscription updater and "ssr://" link importer for Linux
 
-##usage
+## Usage
 
-First, decompress "updateSubscription.tar.gz" and put updateSubscription directory into your "shadoesocksr" directory, it should look like this:
+### Import "ssr://" link
+Use `update.sh` to import your link with following command:
+
+    /bin/sh ./update.sh 'ssr://exAmpLeSSrLink=='
+
+Then, your config file will be updated, and the old config file will rename to `user-config.json.bak`.
+
+### Update Subscription
+First, ensure you have `bc` installed on your system. Use `whereis bc` to find out if you're not sure.
+Then, decompress "updateSubscription.tar.gz" and put updateSubscription directory into your "shadoesocksr" directory, it should look like this:
 
 	shadowsocksr
 	├── updateSubscription
@@ -15,10 +24,10 @@ First, decompress "updateSubscription.tar.gz" and put updateSubscription directo
 	│   ├── test─delay.sh
 	│   └── update.sh
 	├── ...
-	├── user-config.json
-	└── user-config.json.bak
+	└── user-config.json
 
-Then, put your subscription link in "updateSubscription.lst" line-by-line.
+Put your subscription link in "updateSubscription.lst" line-by-line. *(Doesn't support comment or other things... for now.)*\
+Remember to remove the example link, it won't work at all. \
 It should look like this:
 
 	https;//link1.com/link
@@ -30,9 +39,7 @@ Now, you are ready to use those scripts to update your subscriptions :)
 
 ## Note
 
-**For most users, just use "update.sh" to update and replace your config automatically.**
-
-> You may find a lot of "base64: invalid input", just ignore them because most subscription links don't have "=" at the end.
+**For most users, just use "update.sh" to update and replace your config.**
 
 ## Purpose of those files
 
