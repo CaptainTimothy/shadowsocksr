@@ -3,9 +3,9 @@
 ## Usage
 
 ### Import "ssr://" link
-Use `update.sh` to import your link with following command:
+Use `importLink.sh` to import your link with following command:
 
-    /bin/sh ./update.sh 'ssr://exAmpLeSSrLink=='
+    /bin/sh ./importLink.sh 'ssr://exAmpLeSSrLink=='
 
 Then, your config file will be updated, and the old config file will rename to `user-config.json.bak`.
 
@@ -14,7 +14,7 @@ First, ensure you have `bc` installed on your system. Use `whereis bc` to find o
 Then, decompress "updateSubscription.tar.gz" and put updateSubscription directory into your "shadoesocksr" directory, it should look like this:
 
 	shadowsocksr
-	├── updateSubscription
+	├── subscription
 	│   ├── create─config.sh
 	│   ├── get─link.sh
 	│   ├── importLink.sh

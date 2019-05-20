@@ -1,6 +1,7 @@
 #! /bin/sh
 
 WORK_PATH=$(cd "$(dirname "$0")";pwd)/ssrImpLnk
+SSR_PATH=$(cd "$(dirname "$0")"/../;pwd)
 
 # Create work path.
 mkdir $WORK_PATH

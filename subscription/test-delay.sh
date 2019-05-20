@@ -8,12 +8,12 @@ WORK_PATH=$(cd "$(dirname "$0")";pwd)/ssrSubUpd
 echo -e "\033c"
 echo "Latency list:"
 echo ''
-echo '-----------------------------------------'
+echo '+----+------------------+---------------+'
 echo '| NO |        IP        |    Latency    |'
 
 for addr in $(cat $WORK_PATH/delay/address.list)
 do
-	echo '|----|------------------|---------------|'
+	echo '+----+------------------+---------------+'
 	if [ $counter -lt 10 ]
 	then
 		echo -e "| 0$counter | $addr  \t\c" 
@@ -32,7 +32,7 @@ do
 	let counter++
 
 done
-echo '-----------------------------------------'
+echo '+----+------------------+---------------+'
 
 # reset counter equal to 0
 let counter=1
@@ -57,24 +57,22 @@ do
             if [ $minimum -ne 0 ]
             then
 			    rm $WORK_PATH/subscription.json.source/0$minimum
+
+                if [ -f "$WORK_PATH"/json/0$minimum.json ]
+		        then
+                    rm $WORK_PATH/json/0$minimum.json
+                fi
             fi
 		else
 			rm $WORK_PATH/subscription.json.source/$minimum
+
+            if [ -f "$WORK_PATH"/json/$minimum.json ]
+		    then
+                rm $WORK_PATH/json/$minimum.json
+            fi
 		fi
 
         # remove old json file if exist
-		if [ -f "$WORK_PATH"/json/$minimum.json ]
-		then
-			if [ $minimum -lt 10 ]
-			then
-				if [ $minimum -ne 0 ]
-				then
-				    rm $WORK_PATH/json/0$minimum.json
-                fi
-			else
-				rm $WORK_PATH/json/$minimum.json
-			fi
-		fi
 
 		echo $delay > $WORK_PATH/delay/delay.min
         let minimum=$counter
@@ -85,20 +83,21 @@ do
 		if [ $counter -lt 10 ]
 		then
 			rm "$WORK_PATH/subscription.json.source/0$counter"
+
+            if [ -f "$WORK_PATH"/json/0$counter.json ]
+		    then
+                rm $WORK_PATH/json/0$counter.json
+            fi
 		else
 			rm "$WORK_PATH/subscription.json.source/$counter"
+
+            if [ -f "$WORK_PATH"/json/$counter.json ]
+		    then
+                rm $WORK_PATH/json/$counter.json
+            fi
 		fi
 
         # remove new source file if exist
-		if [ -f "$WORK_PATH/json/$counter.json" ]
-		then
-			if [ $counter -lt 10 ]
-			then
-				rm $WORK_PATH/json/0$counter.json
-			else
-				rm $WORK_PATH/json/$counter.json
-			fi
-		fi
 	fi
 
     let counter++
