@@ -14,7 +14,12 @@ if [ "$1" = '' ]
 then
     cp $WORK_PATH/json/$(ls $WORK_PATH/json/) $SSR_PATH/user-config.json
 else
-	cp $WORK_PATH/json_full/$1.json $SSR_PATH/user-config.json
+    if [ -d $WORK_PATH/json_full ]
+    then
+	    cp $WORK_PATH/json_full/$1.json $SSR_PATH/user-config.json
+    else
+	    cp $WORK_PATH/json/$1.json $SSR_PATH/user-config.json
+    fi
 	exit 0
 fi
 

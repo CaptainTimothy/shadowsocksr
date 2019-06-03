@@ -57,6 +57,15 @@ do
 	
 	echo -e "\t\"redirect\":\"\"," >> $WORK_PATH/json/$file.json 									# Redirection settings.
 	
-	echo -e "\t\"fast_open\":false\n}" >> $WORK_PATH/json/$file.json 								# TCP fast open.
+	echo -e "\t\"fast_open\":false," >> $WORK_PATH/json/$file.json 								# TCP fast open.
+
+	echo -e "\t\"remarks\":\"\c" >> $WORK_PATH/json/$file.json									# Server marks.
+	echo "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"," >> $WORK_PATH/json/$file.json
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+
+
+	echo -e "\t\"group\":\"\c" >> $WORK_PATH/json/$file.json									# Server group.
+	echo -e "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"\n}" >> $WORK_PATH/json/$file.json
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file
 done
 
