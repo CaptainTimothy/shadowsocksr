@@ -1,0 +1,4 @@
+# Put those invalid node address here
+# and they should be ignored.
+google.com
+1.1.1.1

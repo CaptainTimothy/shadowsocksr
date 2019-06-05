@@ -85,3 +85,6 @@ Now, you are ready to use those scripts to update your subscriptions :)
 > - Python script get wrong path issue fixed
 > - Rename `importLink.sh` to `import.sh`
 > - Update user interface
+
+#### 06.05.2019
+> - Add ignore server list, filter by server address
