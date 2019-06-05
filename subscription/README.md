@@ -23,6 +23,7 @@ Decompress `updateSubscription.tar.gz` and put updateSubscription directory into
 	shadowsocksr
 	├── subscription
 	│   ├── create─config.sh
+	│   ├── exclude.lst
 	│   ├── get─link.sh
 	│   ├── import.sh
 	│   ├── print-delay.py
@@ -59,7 +60,7 @@ Now, you are ready to use those scripts to update your subscriptions :)
 |create-config.sh   |Decode those "ssr://" links and process them to shadowsocksr's json file(s).|
 |test-delay.sh      |Test all your subscriptioned nodes' latency and keep the one which has the minimum latency.|
 |replace-config.sh  |Replace your original "user-config.json" with "test-delay.sh" given json, and backup your original json as "user-config.bak".|
-|import.sh      |Import single "ssr://" link, should use with your link as a parameter. It should looks like: **./import.sh 'ssr://*'**|
+|import.sh      |Import single "ssr://" link, should use with your link as a parameter. It should looks like: `./import.sh 'ssr://*'`|
 
 ## Change Log
 #### 04.21.2019
@@ -88,3 +89,4 @@ Now, you are ready to use those scripts to update your subscriptions :)
 
 #### 06.05.2019
 > - Add ignore server list, filter by server address
+> - Removed some sensetive data
