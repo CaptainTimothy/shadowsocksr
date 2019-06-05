@@ -73,7 +73,7 @@ do
 done
 
 # Remove invalid node
-for link in $(cat $CURRENT_PATH/exclude.list)
+for link in $(cat $WORK_PATH/exclude.list)
 do
     sed -i "/$link/d" $WORK_PATH/subscription.decode.02
 done
