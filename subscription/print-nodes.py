@@ -5,7 +5,7 @@ import sys
 import wcwidth
 from tabulate import tabulate
 
-WORK_PATH=os.getcwd()+'/ssrSubUpd/node.list'
+WORK_PATH=os.path.dirname(os.path.realpath(__file__))+'/ssrSubUpd/node.list'
 table_data=[]
 bfr=''
 

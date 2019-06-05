@@ -5,7 +5,7 @@ import sys
 import wcwidth
 from tabulate import tabulate
 
-FILE=os.getcwd()+'/ssrSubUpd/delay/delay.print'
+FILE=os.path.dirname(os.path.realpath(__file__))+'/ssrSubUpd/delay/delay.print'
 table_data=[]
 bdy=''
 nu=1
