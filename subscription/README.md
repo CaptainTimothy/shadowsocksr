@@ -90,3 +90,6 @@ Now, you are ready to use those scripts to update your subscriptions :)
 #### 06.05.2019
 > - Add ignore server list, filter by server address
 > - Removed some sensetive data
+
+#### 06.08.2019
+> - Fix commit issue

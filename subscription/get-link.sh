@@ -20,23 +20,12 @@ fi
 mkdir $WORK_PATH
 
 # remove commit in subscription.lst
-for lnk in $(cat $CURRENT_PATH/subscription.lst)
-do
-    if [ "$(echo $lnk | grep '#')" = '' ]
-    then
-        echo $lnk >> $WORK_PATH/subscription.list
-    fi
-done
+cp $CURRENT_PATH/subscription.lst $WORK_PATH/subscription.list
+sed -i '/^#/d' $WORK_PATH/subscription.list
 
 # remove commit in exclude.lst
-for lnk in $(cat $CURRENT_PATH/exclude.lst)
-do
-    if [ "$(echo $lnk | grep '#')" = '' ]
-    then
-        echo $lnk >> $WORK_PATH/exclude.list
-    fi
-done
-
+cp $CURRENT_PATH/exclude.lst $WORK_PATH/exclude.list
+sed -i '/^#/d' $WORK_PATH/exclude.list
 
 # Get subscription(s).
 for subscription_link in $(cat $WORK_PATH/subscription.list)
