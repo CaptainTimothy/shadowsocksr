@@ -96,3 +96,9 @@ Now, you are ready to use those scripts to update your subscriptions :)
 
 #### 06.09.2019
 > - Improve user interface
+> - Minor bug fixed
+
+## Working In Progress
+- remove "base64: invalid input" message
+- stop using `ping` as delay test tool\
+      _(this may take a long time cause there're a lot of things I don't know)_
