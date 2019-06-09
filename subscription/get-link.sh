@@ -72,7 +72,7 @@ done
 mkdir $WORK_PATH/subscription.json.source
 for link in $(cat $WORK_PATH/subscription.decode.02)
 do
-    # add "0" when number is less than 10
+    ## add "0" when number is less than 10
     if [ $server_no -lt 10 ]
     then
         str="0$server_no"
@@ -80,7 +80,7 @@ do
         str="$server_no"
     fi
 
-    # split the whole thing line by line
+    ## split the whole thing line by line
     echo $link > $WORK_PATH/subscription.json.source/$str
     sed -i 's/:/\n/g' $WORK_PATH/subscription.json.source/$str
     sed -i 's/\/?obfsparam=/\n/g' $WORK_PATH/subscription.json.source/$str
@@ -94,15 +94,15 @@ done
 # Decode for the password and etc
 for file in $(ls $WORK_PATH/subscription.json.source/)
 do
-    # get line 6~10, replace, decode them, then replace again
+    ## get line 6~10, replace, decode them, then replace again
     server_no=6
     while [ $server_no -lt 11 ]
     do
-        line=$(sed -e "$server_no!d" $WORK_PATH/subscription.json.source/$file)
+        pattern=$(sed -e "$server_no!d" $WORK_PATH/subscription.json.source/$file)
 
-        sed -i "s/$line/MARK_HERE/" $WORK_PATH/subscription.json.source/$file
+        sed -i "0,/$pattern/s/$pattern/MARK_HERE/" $WORK_PATH/subscription.json.source/$file
 
-        sed -i "s/MARK_HERE/$(echo -e "$(echo $line | sed -e 's/_/\//g; s/-/+/g' | base64 -d)")/" $WORK_PATH/subscription.json.source/$file
+        sed -i "s/MARK_HERE/$(echo -e "$(echo $pattern | sed -e 's/_/\//g; s/-/+/g' | base64 -d)")/" $WORK_PATH/subscription.json.source/$file
         let server_no++
     done
 done
@@ -139,7 +139,7 @@ do
 done
 
 # Print all node(s).
-echo -e "\033c"
+echo -e "\033c\e[3J"
 echo ''
 /bin/python $CURRENT_PATH/print-nodes.py
 echo ''
