@@ -36,12 +36,12 @@ TOTAL=$(wc -l $WORK_PATH/delay/address.list | grep -o -E "[[:digit:]]+")
 echo -en "\033c\e[3J"
 
 echo -en "\033c\e[3J"
-echo "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
-echo "▓                          ▓"
-echo "▓  Fake Node Latency Test  ▓"
-echo "▓        Using Ping        ▓"
-echo "▓                          ▓"
-echo "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
+echo "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
+echo "▓▓                          ▓▓"
+echo "▓▓  Fake Node Latency Test  ▓▓"
+echo "▓▓        Using Ping        ▓▓"
+echo "▓▓                          ▓▓"
+echo "▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
 
 echo "Please wait while progress bar is running..."
 
@@ -106,7 +106,7 @@ do
     sed -i 's/0\ received/99999/' $WORK_PATH/delay/delay.print.tmp
 
     ## save server address and latency to file for print and compare
-    echo "$addr|$(cat $WORK_PATH/delay/delay.print.tmp)" >> $WORK_PATH/delay/delay.print
+    echo "$(cat $WORK_PATH/node.list | grep -e "$addr")|$(cat $WORK_PATH/delay/delay.print.tmp)" >> $WORK_PATH/delay/delay.print
 
     ## print delay
     echo -e "\033[u\033[3B\033[9D$(cat $WORK_PATH/delay/delay.print.tmp)"

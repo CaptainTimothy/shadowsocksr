@@ -93,3 +93,6 @@ Now, you are ready to use those scripts to update your subscriptions :)
 
 #### 06.08.2019
 > - Fix commit issue
+
+#### 06.09.2019
+> - Improve user interface
