@@ -68,7 +68,6 @@ do
 
     for pattern in $(cat ${WORK_PATH}/exclude.list)
     do
-        echo "${pattern}"
         if [ ! -z "$(echo ${remark}${link} | grep ${pattern})" ]
         then
             sed -i "/$(echo ${link} | sed -e 's/\//\\\//g')/d" ${WORK_PATH}/subscription.decode.02
