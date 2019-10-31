@@ -62,10 +62,22 @@ do
 done
 
 # Remove invalid node
-for link in $(cat $WORK_PATH/exclude.list)
+for link in $(cat ${WORK_PATH}/subscription.decode.02)
 do
-    sed -i "/$link/d" $WORK_PATH/subscription.decode.02
+    remark=$(echo ${link} | grep -Po "(?<=remarks=).*" | grep -Po ".*(?=&group=)" | sed -e 's/_/\//g' | sed -e 's/-/+/g' | base64 -d)
+
+    for pattern in $(cat ${WORK_PATH}/exclude.list)
+    do
+        echo "${pattern}"
+        if [ ! -z "$(echo ${remark}${link} | grep ${pattern})" ]
+        then
+            sed -i "/$(echo ${link} | sed -e 's/\//\\\//g')/d" ${WORK_PATH}/subscription.decode.02
+            break
+        fi
+    done
 done
+cat ${WORK_PATH}/subscription.decode.02
+
 
 # Decode for the third time. (Decode password and etc.)
 
@@ -139,7 +151,7 @@ do
 done
 
 # Print all node(s).
-echo -e "\033c\e[3J"
+#echo -e "\033c\e[3J"
 echo ''
 /bin/python $CURRENT_PATH/print-nodes.py
 echo ''
