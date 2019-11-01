@@ -9,25 +9,25 @@ for file in $(ls $WORK_PATH/subscription.json.source)
 do
 	echo -e "{\n\t\"server\":\"\c" > $WORK_PATH/json/$file.json									# Server IP / domain.
 	echo "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"," >> $WORK_PATH/json/$file.json
-	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file 2> /dev/null
 	
 	echo -e "\t\"server_ipv6\":\"::\"," >> $WORK_PATH/json/$file.json								# Server IPv6 address.
 	
 	echo -e "\t\"server_port\":\c" >> $WORK_PATH/json/$file.json									# Server port.
 	echo "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)," >> $WORK_PATH/json/$file.json
-	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file 2> /dev/null
 	
 	echo -e "\t\"protocol\":\"\c" >> $WORK_PATH/json/$file.json									# Server protocol.
 	echo "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"," >> $WORK_PATH/json/$file.json
-	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file 2> /dev/null
 	
 	echo -e "\t\"method\":\"\c" >> $WORK_PATH/json/$file.json									# Server method.
 	echo "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"," >> $WORK_PATH/json/$file.json
-	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file 2> /dev/null
 	
 	echo -e "\t\"obfs\":\"\c" >> $WORK_PATH/json/$file.json										# Server obfs.
 	echo "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"," >> $WORK_PATH/json/$file.json
-	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file 2> /dev/null
 	
 	echo -e "\t\"local_address\":\"127.0.0.1\"," >> $WORK_PATH/json/$file.json							# Local host address.
 	
@@ -35,15 +35,15 @@ do
 	
 	echo -e "\t\"password\":\"\c" >> $WORK_PATH/json/$file.json									# Server password.
 	echo "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"," >> $WORK_PATH/json/$file.json
-	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file 2> /dev/null
 	
 	echo -e "\t\"obfs_param\":\"\c" >> $WORK_PATH/json/$file.json									# Server obfs param.
 	echo "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"," >> $WORK_PATH/json/$file.json
-	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file 2> /dev/null
 	
 	echo -e "\t\"protocol_param\":\"\c" >> $WORK_PATH/json/$file.json								# Server protocol param.
 	echo "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"," >> $WORK_PATH/json/$file.json
-	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file 2> /dev/null
 	
 	echo -e "\t\"speed_limit_per_con\":0," >> $WORK_PATH/json/$file.json								# Speed limit.
 	echo -e "\t\"speed_limit_per_user\":0," >> $WORK_PATH/json/$file.json
@@ -61,11 +61,11 @@ do
 
 	echo -e "\t\"remarks\":\"\c" >> $WORK_PATH/json/$file.json									# Server marks.
 	echo "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"," >> $WORK_PATH/json/$file.json
-	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file 2> /dev/null
 
 
 	echo -e "\t\"group\":\"\c" >> $WORK_PATH/json/$file.json									# Server group.
 	echo -e "$(cat $WORK_PATH/subscription.json.source/$file | head -n 1)\"\n}" >> $WORK_PATH/json/$file.json
-	sed -i '1d' $WORK_PATH/subscription.json.source/$file
+	sed -i '1d' $WORK_PATH/subscription.json.source/$file 2> /dev/null
 done
 

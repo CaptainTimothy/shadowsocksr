@@ -21,11 +21,11 @@ mkdir $WORK_PATH
 
 # remove commit in subscription.lst
 cp $CURRENT_PATH/subscription.lst $WORK_PATH/subscription.list
-sed -i '/^#/d' $WORK_PATH/subscription.list
+sed -i '/^#/d' $WORK_PATH/subscription.list 2> /dev/null
 
 # remove commit in exclude.lst
 cp $CURRENT_PATH/exclude.lst $WORK_PATH/exclude.list
-sed -i '/^#/d' $WORK_PATH/exclude.list
+sed -i '/^#/d' $WORK_PATH/exclude.list 2> /dev/null
 
 # Get subscription(s).
 for subscription_link in $(cat $WORK_PATH/subscription.list)
@@ -45,32 +45,32 @@ done
 # Decode for the first time. (ssr://*)
 for link in $(cat $WORK_PATH/subscription.source)
 do
-	echo "$link" | base64 -d >> $WORK_PATH/subscription.decode.01
+	echo "$link" | base64 -d >> $WORK_PATH/subscription.decode.01 2> /dev/null
 done
 
 # Remove "ssr://"
-sed -i 's/^......//g' $WORK_PATH/subscription.decode.01
+sed -i 's/^......//g' $WORK_PATH/subscription.decode.01 2> /dev/null
 
-sed -i 's/_/\//g' $WORK_PATH/subscription.decode.01
-sed -i 's/-/+/g' $WORK_PATH/subscription.decode.01
+sed -i 's/_/\//g' $WORK_PATH/subscription.decode.01 2> /dev/null
+sed -i 's/-/+/g' $WORK_PATH/subscription.decode.01 2> /dev/null
 
 # Decode for the second time. (domain:port:*)
 for link in $(cat $WORK_PATH/subscription.decode.01)
 do
-	echo $link | base64 -d >> $WORK_PATH/subscription.decode.02
+	echo $link | base64 -d >> $WORK_PATH/subscription.decode.02 2> /dev/null
 	echo '' >> $WORK_PATH/subscription.decode.02
 done
 
 # Remove invalid node
 for link in $(cat ${WORK_PATH}/subscription.decode.02)
 do
-    remark=$(echo ${link} | grep -Po "(?<=remarks=).*" | grep -Po ".*(?=&group=)" | sed -e 's/_/\//g' | sed -e 's/-/+/g' | base64 -d)
+    remark=$(echo ${link} | grep -Po "(?<=remarks=).*" | grep -Po ".*(?=&group=)" | sed -e 's/_/\//g' 2> /dev/null | sed -e 's/-/+/g' 2> /dev/null | base64 -d 2> /dev/null)
 
     for pattern in $(cat ${WORK_PATH}/exclude.list)
     do
         if [ ! -z "$(echo ${remark}${link} | grep ${pattern})" ]
         then
-            sed -i "/$(echo ${link} | sed -e 's/\//\\\//g')/d" ${WORK_PATH}/subscription.decode.02
+            sed -i "/$(echo ${link} 2> /dev/null | sed -e 's/\//\\\//g')/d" ${WORK_PATH}/subscription.decode.02 2> /dev/null
             break
         fi
     done
@@ -91,11 +91,11 @@ do
 
     ## split the whole thing line by line
     echo $link > $WORK_PATH/subscription.json.source/$str
-    sed -i 's/:/\n/g' $WORK_PATH/subscription.json.source/$str
-    sed -i 's/\/?obfsparam=/\n/g' $WORK_PATH/subscription.json.source/$str
-    sed -i 's/&protoparam=/\n/g' $WORK_PATH/subscription.json.source/$str
-    sed -i 's/&remarks=/\n/g' $WORK_PATH/subscription.json.source/$str
-    sed -i 's/&group=/\n/g' $WORK_PATH/subscription.json.source/$str
+    sed -i 's/:/\n/g' $WORK_PATH/subscription.json.source/$str 2> /dev/null
+    sed -i 's/\/?obfsparam=/\n/g' $WORK_PATH/subscription.json.source/$str 2> /dev/null
+    sed -i 's/&protoparam=/\n/g' $WORK_PATH/subscription.json.source/$str 2> /dev/null
+    sed -i 's/&remarks=/\n/g' $WORK_PATH/subscription.json.source/$str 2> /dev/null
+    sed -i 's/&group=/\n/g' $WORK_PATH/subscription.json.source/$str 2> /dev/null
 
     let server_no++
 done
@@ -107,11 +107,11 @@ do
     server_no=6
     while [ $server_no -lt 11 ]
     do
-        pattern=$(sed -e "$server_no!d" $WORK_PATH/subscription.json.source/$file)
+        pattern=$(sed -e "$server_no!d" $WORK_PATH/subscription.json.source/$file 2> /dev/null)
 
-        sed -i "0,/$pattern/s/$pattern/MARK_HERE/" $WORK_PATH/subscription.json.source/$file
+        sed -i "0,/$pattern/s/$pattern/MARK_HERE/" $WORK_PATH/subscription.json.source/$file 2> /dev/null
 
-        sed -i "s/MARK_HERE/$(echo -e "$(echo $pattern | sed -e 's/_/\//g; s/-/+/g' | base64 -d)")/" $WORK_PATH/subscription.json.source/$file
+        sed -i "s/MARK_HERE/$(echo -e "$(echo $pattern | sed -e 's/_/\//g; s/-/+/g' 2> /dev/null | base64 -d 2> /dev/null)")/" $WORK_PATH/subscription.json.source/$file 2> /dev/null
         let server_no++
     done
 done
@@ -134,10 +134,10 @@ do
     let server_no++
 done
 
-sed -i ':a;N;$!ba;s/\n/\|/g' $WORK_PATH/node.list
-sed -i 's/EOL/\n/g' $WORK_PATH/node.list
-sed -i -E 's/^\|//g; s/\|$//g' $WORK_PATH/node.list
-sed -i '/^$/d' $WORK_PATH/node.list
+sed -i ':a;N;$!ba;s/\n/\|/g' $WORK_PATH/node.list 2> /dev/null
+sed -i 's/EOL/\n/g' $WORK_PATH/node.list 2> /dev/null
+sed -i -E 's/^\|//g; s/\|$//g' $WORK_PATH/node.list 2> /dev/null
+sed -i '/^$/d' $WORK_PATH/node.list 2> /dev/null
 
 # Create a list with server ip(s) in order to test latency.
 mkdir $WORK_PATH/delay
