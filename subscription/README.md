@@ -98,7 +98,11 @@ Now, you are ready to use those scripts to update your subscriptions :)
 > - Improve user interface
 > - Minor bug fixed
 
+#### 01.11.2019
+> - Remove warnings such as "base64: invalid input"
+> - Add support for filter with remarks
+
 ## Working In Progress
-- remove "base64: invalid input" message
+- ~~remove "base64: invalid input" message~~
 - stop using `ping` as delay test tool\
-      _(this may take a long time cause there're a lot of things I don't know)_
+      _(Maybe use `curl` and `time` instead??)_
