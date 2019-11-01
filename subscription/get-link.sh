@@ -75,8 +75,6 @@ do
         fi
     done
 done
-cat ${WORK_PATH}/subscription.decode.02
-
 
 # Decode for the third time. (Decode password and etc.)
 
